@@ -62,23 +62,23 @@ class Dog
     dog
   end
 
-  def self.new_from_db(row)
-    id = row[0]
-    name = row[1]
-    breed = row[2]
-    Dog.new(id: id, name: name, breed: breed)
-  end
+  # def self.new_from_db(row)
+  #   id = row[0]
+  #   name = row[1]
+  #   breed = row[2]
+  #   Dog.new(id: id, name: name, breed: breed)
+  # end
 
-  self.find_by_name(name)
-    sql = <<-SQL
-      SELECT * FROM dogs
-      WHERE name = ? LIMIT 1
-      SQL
-
-    DB[:conn].execute(sql, name).map do |row|
-      self.new_from_db(row)
-    end.first
-  end
+  # self.find_by_name(name)
+  #   sql = <<-SQL
+  #     SELECT * FROM dogs
+  #     WHERE name = ? LIMIT 1
+  #     SQL
+  # 
+  #   DB[:conn].execute(sql, name).map do |row|
+  #     self.new_from_db(row)
+  #   end.first
+  # end
 
   def update
     sql = "UPDATE dogs SET name = ?, breed = ? WHERE id = ?"
