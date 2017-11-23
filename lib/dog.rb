@@ -5,10 +5,13 @@ class Dog
     attributes.each {|key, value| self.send(("#{key}="), value)}
   end
 
-  def self.create_table(name:, breed:)
-    new_dog = Dog.new(name, breed)
-    new_dog.save
-    new_dog
+  def self.create_table
+    sql = <<-SQL
+      CREATE TABLE IF NOT EXISTS dog (
+        id INTEGER PRIMARY KEY,
+        name TEXT, breed TEXT)
+      SQL
+      DB[:conn].execute(sql)
   end
 
   def self.drop_table
