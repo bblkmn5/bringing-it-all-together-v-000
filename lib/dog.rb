@@ -66,11 +66,11 @@ class Dog
     id = row[0]
     name = row[1]
     breed = row[2]
-    self.new(id: id, name: name, breed: breed)
+    Dog.new(id: id, name: name, breed: breed)
   end
 
   self.find_by_name(name)
-    sql = <<-SQL 
+    sql = <<-SQL
       SELECT * FROM dogs
       WHERE name = ? LIMIT 1
       SQL
